@@ -22,7 +22,7 @@ Cnf::~Cnf() {
     
 }
 
-void Cnf::fillCnf(const string &filePath) {
+void Cnf::FillCnf(const string &filePath) {
     ifstream in;                    //in(filePath) nefunguje preco??
     in.open(filePath);
     if(in.is_open()) {
@@ -32,8 +32,8 @@ void Cnf::fillCnf(const string &filePath) {
                 continue;
             }else if (line.at(0) == 'p'){
                 stringstream confLine(line.substr(5));
-                confLine>>numberOfLiterals_;
-                confLine>>numberOfClauses_;
+                confLine>>number_of_literals_;
+                confLine>>number_of_clauses_;
             }else if (line.at(0) == '-' || isdigit(line.at(0)) ) {
                 istringstream is(line);
                 vector<int> vec;
@@ -42,7 +42,7 @@ void Cnf::fillCnf(const string &filePath) {
                     vec.push_back(n);
                 }
                 vec.pop_back();
-                cnfFormulas_.push_back(vec);
+                cnf_formulas_.push_back(vec);
                 if (in.eof()) {
                     break;
                 }
@@ -53,7 +53,7 @@ void Cnf::fillCnf(const string &filePath) {
                 while (is>>n) {
                     vec.push_back(n);
                 }
-                xorFormulas_.push_back(vec);
+                xor_formulas_.push_back(vec);
                 if(in.eof()) {
                     break;
                 }
@@ -65,26 +65,26 @@ void Cnf::fillCnf(const string &filePath) {
     in.close();
 }
 
-vector<vector<int> > Cnf::getCnfFormulas() {
-    return cnfFormulas_;
+vector<vector<int> > Cnf::GetCnfFormulas() {
+    return cnf_formulas_;
 }
 
-vector<vector<int> > Cnf::getXorFormulas() {
-    return xorFormulas_;
+vector<vector<int> > Cnf::GetXorFormulas() {
+    return xor_formulas_;
 }
 
-int Cnf::getNumberOfLiterals() {
-    return numberOfLiterals_;
+int Cnf::GetNumberOfLiterals() {
+    return number_of_literals_;
 }
 
-int Cnf::getNumberOfClauses() {
-    return numberOfClauses_;
+int Cnf::GetNumberOfClauses() {
+    return number_of_clauses_;
 }
 
-void Cnf::printCnfFormulas() {
-    for (int i = 0; i < cnfFormulas_.size(); i++) {
-        for (int j = 0; j < cnfFormulas_[i].size(); j++) {
-            cout<<cnfFormulas_[i][j]<<" ";
+void Cnf::PrintCnfFormulas() {
+    for (int i = 0; i < cnf_formulas_.size(); i++) {
+        for (int j = 0; j < cnf_formulas_[i].size(); j++) {
+            cout<<cnf_formulas_[i][j]<<" ";
         }
         cout<<"\n";
     }

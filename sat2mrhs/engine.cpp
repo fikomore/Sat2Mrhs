@@ -10,12 +10,12 @@
 #include <iostream>
 
 Engine::Engine(const string &filePath) {
-    cnf_.fillCnf(filePath);
-    cnf_.printCnfFormulas();
-    mrhs_.fillBigBlock(cnf_.getCnfFormulas(), cnf_.getXorFormulas(), cnf_.getNumberOfLiterals());
-    mrhs_.fillRightSides(cnf_.getCnfFormulas(), cnf_.getXorFormulas());
-    mrhs_.printBigBlock(cnf_.getNumberOfLiterals());
-    mrhs_.printRightSides();
+    cnf_.FillCnf(filePath);
+    cnf_.PrintCnfFormulas();
+    mrhs_.FillBigBlock(cnf_.GetCnfFormulas(), cnf_.GetXorFormulas(), cnf_.GetNumberOfLiterals());
+    mrhs_.FillRightSides(cnf_.GetCnfFormulas(), cnf_.GetXorFormulas());
+    mrhs_.PrintBigBlock(cnf_.GetNumberOfLiterals());
+    mrhs_.PrintRightSides();
 }
 
 
@@ -23,13 +23,13 @@ Engine::~Engine() {
 
 }
 
-void Engine::printCnf() {
-    for (int i=0; i<cnf_.getCnfFormulas().size(); i++) {
-        for (int j=0; j<cnf_.getCnfFormulas()[i].size(); j++) {
-            cout<<cnf_.getCnfFormulas()[i][j]<<" ";
+void Engine::PrintCnf() {
+    for (int i=0; i<cnf_.GetCnfFormulas().size(); i++) {
+        for (int j=0; j<cnf_.GetCnfFormulas()[i].size(); j++) {
+            cout<<cnf_.GetCnfFormulas()[i][j]<<" ";
         }
         cout<<"\n";
     }
-    cout<<"Pocet klauzul je: "<<cnf_.getNumberOfClauses()<<"\n";
-    cout<<"Pocet literalov je:"<<cnf_.getNumberOfLiterals()<<"\n";
+    cout<<"Pocet klauzul je: "<<cnf_.GetNumberOfClauses()<<"\n";
+    cout<<"Pocet literalov je:"<<cnf_.GetNumberOfLiterals()<<"\n";
 }

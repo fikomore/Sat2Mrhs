@@ -16,28 +16,28 @@ using namespace std;
 
 class Mrhs{
 private:
-    vector<vector<vector<int> > > bigBlock_;
-    vector<vector<vector<int> > > rightSides_;
+    vector<vector<vector<int> > > big_block_;
+    vector<vector<vector<int> > > right_sides_;
 public:
     Mrhs();
     ~Mrhs();
     
-    void creatBlocksFromCnfFormulas(vector<vector<int> > cnfFormulas, int numberOfLiterals);
-    void creatBlocksFromXorFormulas(vector<vector<int> > xorFormulas, int numberOfLiterals);
-    void fillBigBlock(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas, int numberOfLiterals);
+    void CreatBlocksFromCnfFormulas(vector<vector<int> > cnfFormulas, int numberOfLiterals);
+    void CreatBlocksFromXorFormulas(vector<vector<int> > xorFormulas, int numberOfLiterals);
+    void FillBigBlock(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas, int numberOfLiterals);
     
-    void creatRightSidesFromCnfFormulas(vector<vector<int> > cnfFormulas);
-    void creatRightSidesFromXorFormulas(vector<vector<int> > xorFormulas);
-    void fillRightSides(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas);
+    void CreatRightSidesFromCnfFormulas(vector<vector<int> > cnfFormulas);
+    void CreatRightSidesFromXorFormulas(vector<vector<int> > xorFormulas);
+    void FillRightSides(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas);
     
-    vector<vector<int> > creatTruthTable(int n);
-    vector<int> findForbidenCombination(vector<int> cnfFormula);
-    void removeForbidenCombination(vector<vector<int> > &rightSides, vector<int> forbidenCombination);
+    vector<vector<int> > CreatTruthTable(int n);
+    vector<int> FindForbidenCombination(vector<int> cnfFormula);
+    void RemoveForbidenCombination(vector<vector<int> > &rightSides, vector<int> forbidenCombination);
     
-    vector<vector<vector<int> > > getBigBlock();
-    vector<vector<vector<int> > > getRightSides();
+    vector<vector<vector<int> > > GetBigBlock();
+    vector<vector<vector<int> > > GetRightSides();
     
-    void printBigBlock(int numberOfLiterals);
-    void printRightSides();
+    void PrintBigBlock(int numberOfLiterals);
+    void PrintRightSides();
 };
 #endif /* mrhs_hpp */

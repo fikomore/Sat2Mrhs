@@ -24,6 +24,6 @@ public:
     Engine (const string &filePath);
     ~Engine ();
     
-    void printCnf();
+    void PrintCnf();
 };
 #endif /* engine_hpp */

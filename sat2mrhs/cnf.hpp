@@ -17,19 +17,19 @@ using namespace std;
 
 class Cnf{
 private:
-    vector<vector<int> > cnfFormulas_;
-    vector<vector<int> > xorFormulas_;
-    int numberOfLiterals_;
-    int numberOfClauses_;
+    vector<vector<int> > cnf_formulas_;
+    vector<vector<int> > xor_formulas_;
+    int number_of_literals_;
+    int number_of_clauses_;
 public:
     Cnf();
     ~Cnf();
-    void fillCnf(const string &filePath);
-    void makeOptimalization();
-    vector<vector<int> > getCnfFormulas();
-    vector<vector<int> > getXorFormulas();
-    int getNumberOfLiterals();
-    int getNumberOfClauses();
-    void printCnfFormulas();
+    void FillCnf(const string &filePath);
+    void MakeOptimalization();
+    vector<vector<int> > GetCnfFormulas();
+    vector<vector<int> > GetXorFormulas();
+    int GetNumberOfLiterals();
+    int GetNumberOfClauses();
+    void PrintCnfFormulas();
 };
 #endif /* cnf_hpp */

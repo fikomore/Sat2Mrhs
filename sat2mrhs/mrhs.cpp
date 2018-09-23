@@ -20,7 +20,7 @@ Mrhs::~Mrhs() {
     
 }
 
-void Mrhs::creatBlocksFromCnfFormulas(vector<vector<int> > cnfFormulas, int numberOfLiterals) {
+void Mrhs::CreatBlocksFromCnfFormulas(vector<vector<int> > cnfFormulas, int numberOfLiterals) {
     for (int i=0; i<cnfFormulas.size(); i++) {
         vector<vector<int> > tmpBlock;
         for (int j=0; j<numberOfLiterals; j++) {
@@ -35,11 +35,11 @@ void Mrhs::creatBlocksFromCnfFormulas(vector<vector<int> > cnfFormulas, int numb
             }
             tmpBlock.push_back(tmpLine);
         }
-        bigBlock_.push_back(tmpBlock);
+        big_block_.push_back(tmpBlock);
     }
 }
 
-void Mrhs::creatBlocksFromXorFormulas(vector<vector<int> > xorFormulas, int numberOfLiterals) {
+void Mrhs::CreatBlocksFromXorFormulas(vector<vector<int> > xorFormulas, int numberOfLiterals) {
     for (int i=0; i<xorFormulas.size(); i++) {
         vector<vector<int> > tmpBlock;
         for (int j=0; j<numberOfLiterals; j++) {
@@ -55,26 +55,26 @@ void Mrhs::creatBlocksFromXorFormulas(vector<vector<int> > xorFormulas, int numb
             }
             tmpBlock.push_back(tmpLine);
         }
-        bigBlock_.push_back(tmpBlock);
+        big_block_.push_back(tmpBlock);
     }
 }
 
-void Mrhs::fillBigBlock(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas, int numberOfLiterals) {
-    creatBlocksFromCnfFormulas(cnfFormulas, numberOfLiterals);
-    creatBlocksFromXorFormulas(xorFormulas, numberOfLiterals);
+void Mrhs::FillBigBlock(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas, int numberOfLiterals) {
+    CreatBlocksFromCnfFormulas(cnfFormulas, numberOfLiterals);
+    CreatBlocksFromXorFormulas(xorFormulas, numberOfLiterals);
 }
 
-void Mrhs::creatRightSidesFromCnfFormulas(vector<vector<int> > cnfFormulas) {
+void Mrhs::CreatRightSidesFromCnfFormulas(vector<vector<int> > cnfFormulas) {
     for (int i = 0; i < cnfFormulas.size(); i++) {
-        vector<vector<int> > rightSides = creatTruthTable(cnfFormulas[i].size());
-        vector<int> forbidenCombination = findForbidenCombination(cnfFormulas[i]);
-        removeForbidenCombination(rightSides, forbidenCombination);
-        rightSides_.push_back(rightSides);
+        vector<vector<int> > rightSides = CreatTruthTable(cnfFormulas[i].size());
+        vector<int> forbidenCombination = FindForbidenCombination(cnfFormulas[i]);
+        RemoveForbidenCombination(rightSides, forbidenCombination);
+        right_sides_.push_back(rightSides);
     }
     
 }
 
-vector<vector<int> > Mrhs::creatTruthTable(int n) {
+vector<vector<int> > Mrhs::CreatTruthTable(int n) {
     std::vector<vector<int> > result;
     int maxValue = 1<<n;
     for (int i = maxValue; i > 0; i--) {
@@ -88,7 +88,7 @@ vector<vector<int> > Mrhs::creatTruthTable(int n) {
     return result;
 }
 
-vector<int> Mrhs::findForbidenCombination(vector<int> cnfFormula) {
+vector<int> Mrhs::FindForbidenCombination(vector<int> cnfFormula) {
     std::vector<int> result;
     for(int i=0;i<cnfFormula.size();i++){
         if(cnfFormula[i]>0)
@@ -99,7 +99,7 @@ vector<int> Mrhs::findForbidenCombination(vector<int> cnfFormula) {
     return result;
 }
 
-void Mrhs::removeForbidenCombination(vector<vector<int> > &rightSides, vector<int> forbidenCombination) {
+void Mrhs::RemoveForbidenCombination(vector<vector<int> > &rightSides, vector<int> forbidenCombination) {
     int counter =0;
     for(std::vector<std::vector<int> >::const_iterator i=rightSides.begin();i!=rightSides.end();i++){
         if(*i==forbidenCombination){
@@ -110,30 +110,30 @@ void Mrhs::removeForbidenCombination(vector<vector<int> > &rightSides, vector<in
     }
 }
 
-void Mrhs::fillRightSides(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas) {
-    creatRightSidesFromCnfFormulas(cnfFormulas);
+void Mrhs::FillRightSides(vector<vector<int> > cnfFormulas, vector<vector<int> > xorFormulas) {
+    CreatRightSidesFromCnfFormulas(cnfFormulas);
 }
 
-vector<vector<vector<int> > > Mrhs::getBigBlock() {
-    return bigBlock_;
+vector<vector<vector<int> > > Mrhs::GetBigBlock() {
+    return big_block_;
 }
 
-vector<vector<vector<int> > > Mrhs::getRightSides() {
-    return rightSides_;
+vector<vector<vector<int> > > Mrhs::GetRightSides() {
+    return right_sides_;
 }
 
-void Mrhs::printBigBlock(int numberOfLiterals){
+void Mrhs::PrintBigBlock(int numberOfLiterals){
     cout<<" ";
     for (int i = 0; i < numberOfLiterals; i++) {
         cout<<"[";
-        for (int j = 0; j <bigBlock_.size(); j++) {
-            for (int k = 0; k< bigBlock_[j][i].size(); k++) {
-                cout<<bigBlock_[j][i][k];
-                if (k+1 != bigBlock_[j][i].size()) {
+        for (int j = 0; j <big_block_.size(); j++) {
+            for (int k = 0; k< big_block_[j][i].size(); k++) {
+                cout<<big_block_[j][i][k];
+                if (k+1 != big_block_[j][i].size()) {
                     cout<<" ";
                 }
             }
-            if(j != bigBlock_.size()-1) {
+            if(j != big_block_.size()-1) {
                 cout<<" ";
             }
         }
@@ -141,13 +141,13 @@ void Mrhs::printBigBlock(int numberOfLiterals){
     }
 }
 
-void Mrhs::printRightSides() {
+void Mrhs::PrintRightSides() {
     cout<<"\n";
-    for (int i=0; i<rightSides_.size(); i++) {
-        for (int j=0; j<rightSides_[i].size(); j++) {
+    for (int i=0; i<right_sides_.size(); i++) {
+        for (int j=0; j<right_sides_[i].size(); j++) {
             cout<<"[";
-            for (int k=0; k<rightSides_[i][j].size(); k++) {
-                cout<<rightSides_[i][j][k]<<" ";
+            for (int k=0; k<right_sides_[i][j].size(); k++) {
+                cout<<right_sides_[i][j][k]<<" ";
             }
             cout<<"]\n";
         }
